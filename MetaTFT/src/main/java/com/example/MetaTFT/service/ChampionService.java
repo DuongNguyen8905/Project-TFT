@@ -14,4 +14,5 @@ public interface ChampionService {
 
     void deleteById(int theId);
 
+    List<Champion> findChampionsByName(String name);
 }

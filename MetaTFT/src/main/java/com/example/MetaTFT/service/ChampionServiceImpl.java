@@ -37,4 +37,9 @@ public class ChampionServiceImpl implements ChampionService{
 
     }
 
+    public List<Champion> findChampionsByName(String name) {
+        return championRepository.findByNameContainingIgnoreCase(name);
+    }
+
+
 }

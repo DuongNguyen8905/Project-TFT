@@ -8,26 +8,26 @@ public class Champion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
+    @Column(name="id")
     private int id;
 
-
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "tier")
+    private String tier;
 
-    private String tiger;
-
-
+    @Column(name = "avatarUrl")
     private String avatarUrl;
 
     public Champion(){
 
     }
 
-    public Champion(int id, String name, String tiger, String avatarUrl) {
+    public Champion(int id, String name, String tier, String avatarUrl) {
         this.id = id;
         this.name = name;
-        this.tiger = tiger;
+        this.tier = tier;
         this.avatarUrl = avatarUrl;
     }
 
@@ -47,12 +47,12 @@ public class Champion {
         this.name = name;
     }
 
-    public String getTiger() {
-        return tiger;
+    public String gettier() {
+        return tier;
     }
 
-    public void setTiger(String tiger) {
-        this.tiger = tiger;
+    public void settier(String tier) {
+        this.tier = tier;
     }
 
     public String getAvatarUrl() {

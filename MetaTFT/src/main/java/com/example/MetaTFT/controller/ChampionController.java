@@ -18,12 +18,12 @@ public class ChampionController {
         championService = theChampionService;
     }
 
-    @GetMapping()
+    @GetMapping("/getList")
     public List<Champion> getList(){
         return championService.findAll();
     }
 
-    @PostMapping("/save")
+    @PostMapping()
     public Champion saveChampion(@RequestBody Champion theChampion){
             return championService.save(theChampion);
         }
@@ -45,5 +45,10 @@ public class ChampionController {
 
         championService.deleteById(championId);
         return ResponseEntity.ok("Deleted Champion ID - " + championId);
+    }
+
+    @GetMapping("/search")
+    public List<Champion> searchChampions(@RequestParam String name) {
+        return championService.findChampionsByName(name);
     }
 }
