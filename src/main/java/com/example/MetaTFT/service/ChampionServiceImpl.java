@@ -28,13 +28,31 @@ public class ChampionServiceImpl implements ChampionService{
 
     @Override
     public Champion save(Champion champion) {
+        if (champion.getAvatarUrl() != null && !champion.getAvatarUrl().isEmpty()) {
+            if (!isValidImageUrl(champion.getAvatarUrl())) {
+                throw new IllegalArgumentException("Avatar URL không hợp lệ!");
+            }
+        }
         return championRepository.save(champion);
     }
 
+    private boolean isValidImageUrl(String url) {
+        return url.matches("^(https?:\\/\\/.*\\.(?:png|jpg|jpeg|gif|bmp|webp))$");
+    }
+
     @Override
-    public void deleteById(int theId) {
-        championRepository.deleteById(theId);
+    public void deleteById(int championId) {
+        boolean isExist = championRepository.existsById(championId);
+        if(isExist){
+            championRepository.deleteById(championId);
+        }else throw new IllegalArgumentException("Champion Not Found");
+
 
     }
+
+    public List<Champion> findChampionsByName(String name) {
+        return championRepository.findByNameContainingIgnoreCase(name);
+    }
+
 
 }
