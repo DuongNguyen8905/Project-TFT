@@ -1,6 +1,8 @@
 package com.example.MetaTFT.controller;
 
+import com.example.MetaTFT.controller.dto.CreateChampionRequest;
 import com.example.MetaTFT.entity.Champion;
+import com.example.MetaTFT.entity.Tier;
 import com.example.MetaTFT.model.ErrorResponse;
 import com.example.MetaTFT.service.ChampionService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -49,9 +51,25 @@ public class ChampionController {
     }
 
     @PostMapping
-    public ResponseEntity<?> saveChampion(@Valid @RequestBody Champion theChampion) {
+    public ResponseEntity<?> saveChampion(@Valid @RequestBody CreateChampionRequest champion) {
         try {
-            Champion savedChampion = championService.save(theChampion);
+            String championName = champion.getName();
+            Tier championTier = champion.getTier();
+            String championAvatarUrl = champion.getAvatarUrl();
+
+            if( championName==null || championName.isEmpty() ){
+                throw new IllegalArgumentException("name is not null");
+            }
+             if(championTier == null){
+                 throw new IllegalArgumentException("Tier is not null");
+             }
+
+            Champion newChampion = new Champion();
+            newChampion.setName(championName);
+            newChampion.setTier(championTier);
+            newChampion.setAvatarUrl(championAvatarUrl);
+
+            Champion savedChampion = championService.save(newChampion);
             return ResponseEntity.ok(savedChampion);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();

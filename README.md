@@ -1,6 +1,6 @@
 # api create
-[X] validate tier db
-[x] validate tier api
+[ ] validate tier db
+[x] validate tier api requestBody
 [ ] error handling api exception hl
 [X] avatar validate format url(api)
 [x] require name (message name is require)
