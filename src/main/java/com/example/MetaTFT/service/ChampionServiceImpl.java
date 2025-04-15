@@ -1,6 +1,7 @@
 package com.example.MetaTFT.service;
 
 import com.example.MetaTFT.entity.Champion;
+import com.example.MetaTFT.entity.Tier;
 import com.example.MetaTFT.repository.ChampionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,6 +53,11 @@ public class ChampionServiceImpl implements ChampionService{
 
     public List<Champion> findChampionsByName(String name) {
         return championRepository.findByNameContainingIgnoreCase(name);
+    }
+
+    @Override
+    public List<Champion> findByTier(List<Tier> tiers) {
+        return championRepository.findByTierIn(tiers);
     }
 
 

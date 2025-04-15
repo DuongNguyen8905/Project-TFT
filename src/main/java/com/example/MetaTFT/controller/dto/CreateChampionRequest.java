@@ -1,5 +1,6 @@
 package com.example.MetaTFT.controller.dto;
 
+import com.example.MetaTFT.entity.Stat;
 import com.example.MetaTFT.entity.Tier;
 
 public class CreateChampionRequest {
@@ -9,6 +10,16 @@ public class CreateChampionRequest {
     private Tier tier;
 
     private String avatarUrl;
+
+    private Stat stat;
+
+    public Stat getStat() {
+        return stat;
+    }
+
+    public void setStat(Stat stat) {
+        this.stat = stat;
+    }
 
     public String getName() {
         return name;

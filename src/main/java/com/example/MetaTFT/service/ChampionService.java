@@ -1,6 +1,7 @@
 package com.example.MetaTFT.service;
 
 import com.example.MetaTFT.entity.Champion;
+import com.example.MetaTFT.entity.Tier;
 
 import java.util.List;
 
@@ -15,6 +16,8 @@ public interface ChampionService {
     void deleteById(int theId);
 
     List<Champion> findChampionsByName(String name);
+
+    List<Champion>findByTier(List<Tier>tiers);
 
 
 }

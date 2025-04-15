@@ -30,6 +30,18 @@ public class Champion {
             message = "avatarUrl phải là một đường dẫn URL hợp lệ")
     public String avatarUrl;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "stat_id")
+    private Stat stat;
+
+    public Stat getStat() {
+        return stat;
+    }
+
+    public void setStat(Stat stat) {
+        this.stat = stat;
+    }
+
     public Champion() {
 
     }
@@ -40,6 +52,7 @@ public class Champion {
         this.tier = tier;
         this.avatarUrl = avatarUrl;
     }
+
 
     public int getId() {
         return id;
